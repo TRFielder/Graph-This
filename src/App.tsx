@@ -12,6 +12,7 @@ const App: React.FunctionComponent = () => {
           @import url("https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap");
           body {
             background-color: #344966;
+            color: #b6b6b6;
             font-size: 40px;
             font-family: "Noto Sans", sans-serif;
           }
