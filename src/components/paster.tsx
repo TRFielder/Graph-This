@@ -66,13 +66,13 @@ const Paster: React.FunctionComponent = () => {
 
   return (
     <form css={displayAlignment}>
-      <input
+      <textarea
         css={inputStyle}
         placeholder="paste your data here"
         onChange={(event) => {
           setText(event.target.value);
         }}
-      ></input>
+      ></textarea>
       <button css={buttonStyle} onClick={handlePastedData}>
         Submit
       </button>
