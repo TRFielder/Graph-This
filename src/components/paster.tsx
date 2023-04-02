@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { jsx, css, type SerializedStyles } from "@emotion/react";
-import React from "react";
+import React, { useState } from "react";
 
 // --------- Styles ---------
 
@@ -57,17 +57,26 @@ const buttonStyle: SerializedStyles = css({
 
 // --------- Component ---------
 const Paster: React.FunctionComponent = () => {
-  const handlePastedData: VoidFunction = () => {
-    console.log("click detected!");
+  const [text, setText] = useState("");
+
+  const handlePastedData: any = (e: any) => {
+    e.preventDefault();
+    console.log(text);
   };
 
   return (
-    <div css={displayAlignment}>
-      <input css={inputStyle} placeholder="paste your data here"></input>
+    <form css={displayAlignment}>
+      <input
+        css={inputStyle}
+        placeholder="paste your data here"
+        onChange={(event) => {
+          setText(event.target.value);
+        }}
+      ></input>
       <button css={buttonStyle} onClick={handlePastedData}>
         Submit
       </button>
-    </div>
+    </form>
   );
 };
 
