@@ -4,7 +4,7 @@ import React from "react";
 
 // --------- Styles ---------
 
-// Alignment and positioning
+// Component-level alignment and positioning
 const displayAlignment: SerializedStyles = css({
   display: "flex",
   flexDirection: "column"
@@ -31,6 +31,30 @@ const inputStyle: SerializedStyles = css({
   }
 });
 
+// Button styling
+const buttonStyle: SerializedStyles = css({
+  backgroundColor: "#dee1e2",
+  borderRadius: "8px",
+  borderWidth: "2px solid #dee1e2",
+  color: "#333333",
+  cursor: "pointer",
+  display: "inline-block",
+  fontSize: "14px",
+  fontWeight: 500,
+  lineHeight: "20px",
+  listStyle: "none",
+  margin: "5px",
+  padding: "10px 12px",
+  textAlign: "center",
+  transition: "all 200ms",
+  verticalAlign: "baseline",
+  whiteSpace: "nowrap",
+  userSelect: "none",
+  ":hover": {
+    borderColor: "#9147ff"
+  }
+});
+
 // --------- Component ---------
 const Paster: React.FunctionComponent = () => {
   const handlePastedData: VoidFunction = () => {
@@ -40,7 +64,9 @@ const Paster: React.FunctionComponent = () => {
   return (
     <div css={displayAlignment}>
       <input css={inputStyle} placeholder="paste your data here"></input>
-      <button onClick={handlePastedData}>Submit</button>
+      <button css={buttonStyle} onClick={handlePastedData}>
+        Submit
+      </button>
     </div>
   );
 };
