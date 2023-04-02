@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { jsx, css, type SerializedStyles } from "@emotion/react";
 import React from "react";
+import Paster from "../components/paster";
 
 const divStyle: SerializedStyles = css({
   display: "flex",
@@ -10,7 +11,7 @@ const divStyle: SerializedStyles = css({
 const Home: React.FunctionComponent = () => {
   return (
     <div css={divStyle}>
-      <p>Here is some text!</p>
+      <Paster />
     </div>
   );
 };
