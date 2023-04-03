@@ -7,7 +7,9 @@ import React, { useState } from "react";
 // Component-level alignment and positioning
 const displayAlignment: SerializedStyles = css({
   display: "flex",
-  flexDirection: "column"
+  flexDirection: "column",
+  width: "25%",
+  height: "auto"
 });
 
 // Input styling
@@ -21,7 +23,8 @@ const inputStyle: SerializedStyles = css({
   border: "2px solid #dee1e2",
   background: "#dee1e2",
   display: "block",
-  height: "30px",
+  height: "600px",
+  resize: "none",
   ":hover": {
     borderColor: "#ccc"
   },
@@ -59,9 +62,17 @@ const buttonStyle: SerializedStyles = css({
 const Paster: React.FunctionComponent = () => {
   const [text, setText] = useState("");
 
-  const handlePastedData: any = (e: any) => {
+  const handleTextArea: React.ChangeEventHandler = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setText(e.currentTarget.value);
+  };
+
+  const handlePastedData: React.MouseEventHandler = (e: React.MouseEvent) => {
     e.preventDefault();
-    console.log(text);
+    // This regex checks for carriage return + newline, or carriage return, or newline.
+    // Should catch blank lines which we want to detect for user specified header lines
+    console.log(text.split(/\r?\n|\r|\n/g));
   };
 
   return (
@@ -69,9 +80,7 @@ const Paster: React.FunctionComponent = () => {
       <textarea
         css={inputStyle}
         placeholder="paste your data here"
-        onChange={(event) => {
-          setText(event.target.value);
-        }}
+        onChange={handleTextArea}
       ></textarea>
       <button css={buttonStyle} onClick={handlePastedData}>
         Submit
