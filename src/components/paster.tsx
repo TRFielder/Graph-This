@@ -58,8 +58,12 @@ const buttonStyle: SerializedStyles = css({
   }
 });
 
+interface PasterProps {
+  setData: React.Dispatch<React.SetStateAction<string[]>>;
+}
+
 // --------- Component ---------
-const Paster: React.FunctionComponent = () => {
+const Paster: React.FunctionComponent<PasterProps> = (props: PasterProps) => {
   const [text, setText] = useState("");
 
   const handleTextArea: React.ChangeEventHandler = (
@@ -72,7 +76,8 @@ const Paster: React.FunctionComponent = () => {
     e.preventDefault();
     // This regex checks for carriage return + newline, or carriage return, or newline.
     // Should catch blank lines which we want to detect for user specified header lines
-    console.log(text.split(/\r?\n|\r|\n/g));
+    const inputData = text.split(/\r?\n|\r|\n/g);
+    props.setData(inputData);
   };
 
   return (

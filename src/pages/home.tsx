@@ -1,7 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { jsx, css, type SerializedStyles } from "@emotion/react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Paster from "../components/paster";
+import Chart from "../components/chart";
 
 const divStyle: SerializedStyles = css({
   display: "flex",
@@ -9,9 +10,16 @@ const divStyle: SerializedStyles = css({
 });
 
 const Home: React.FunctionComponent = () => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [data, setData] = useState<string[]>([]);
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
+
   return (
     <div css={divStyle}>
-      <Paster />
+      <Paster setData={setData} />
+      <Chart data={data} />
     </div>
   );
 };
