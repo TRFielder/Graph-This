@@ -59,7 +59,9 @@ const buttonStyle: SerializedStyles = css({
 });
 
 interface PasterProps {
-  setData: React.Dispatch<React.SetStateAction<string[]>>;
+  setData: React.Dispatch<
+    React.SetStateAction<Array<{ x: string; y: string }>>
+  >;
 }
 
 // --------- Component ---------
@@ -77,7 +79,13 @@ const Paster: React.FunctionComponent<PasterProps> = (props: PasterProps) => {
     // This regex checks for carriage return + newline, or carriage return, or newline.
     // Should catch blank lines which we want to detect for user specified header lines
     const inputData = text.split(/\r?\n|\r|\n/g);
-    props.setData(inputData);
+    const dataToPlot = inputData.slice(8).map((line) => {
+      return {
+        x: line.slice(0, line.indexOf("\t")),
+        y: line.slice(line.indexOf("\t"))
+      };
+    });
+    props.setData(dataToPlot);
   };
 
   return (

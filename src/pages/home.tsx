@@ -11,7 +11,7 @@ const divStyle: SerializedStyles = css({
 
 const Home: React.FunctionComponent = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [data, setData] = useState<string[]>([]);
+  const [data, setData] = useState<Array<{ x: string; y: string }>>([]);
   useEffect(() => {
     console.log(data);
   }, [data]);
