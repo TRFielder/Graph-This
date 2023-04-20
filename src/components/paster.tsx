@@ -60,7 +60,7 @@ const buttonStyle: SerializedStyles = css({
 
 interface PasterProps {
   setData: React.Dispatch<
-    React.SetStateAction<Array<{ x: string; y: string }>>
+    React.SetStateAction<Array<{ x: number; y: number }>>
   >;
 }
 
@@ -81,8 +81,8 @@ const Paster: React.FunctionComponent<PasterProps> = (props: PasterProps) => {
     const inputData = text.split(/\r?\n|\r|\n/g);
     const dataToPlot = inputData.slice(8).map((line) => {
       return {
-        x: line.slice(0, line.indexOf("\t")),
-        y: line.slice(line.indexOf("\t"))
+        x: Number(line.slice(0, line.indexOf("\t"))),
+        y: Number(line.slice(line.indexOf("\t")))
       };
     });
     props.setData(dataToPlot);

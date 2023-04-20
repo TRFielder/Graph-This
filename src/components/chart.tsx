@@ -1,33 +1,24 @@
 /** @jsxImportSource @emotion/react */
 import { jsx } from "@emotion/react";
 import React from "react";
-/* import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer
-} from "recharts"; */
+import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts";
 
 // --------- Styles ---------
 
 interface ChartProps {
-  data: Array<{ x: string; y: string }>;
+  data: Array<{ x: number; y: number }>;
 }
 // --------- Component ---------
 
 const Chart: React.FunctionComponent<ChartProps> = (props: ChartProps) => {
+  console.log(props.data);
   return (
-    <div>
-      {props.data.map((value: { x: string; y: string }) => (
-        <p key={value.x}>
-          {value.x} {value.y}
-        </p>
-      ))}
-    </div>
+    <LineChart width={1000} height={800} data={props.data}>
+      <CartesianGrid strokeDasharray="3 3" />
+      <XAxis dataKey="x" />
+      <YAxis />
+      <Line type="monotone" dataKey="y" stroke="#8884d8" />
+    </LineChart>
   );
 };
 
